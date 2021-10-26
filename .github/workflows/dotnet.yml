@@ -1,0 +1,71 @@
+name: .NET
+
+on:
+  push:
+    branches: [ Development ]
+
+jobs:
+  buildAndTest:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+  
+  deploymentStaging:
+    needs: buildAndTest
+    if: startsWith(github.ref, 'refs/tags/s')
+    runs-on: ubuntu-latest
+    environment: 
+      name: Staging
+      url: https://github.com
+    steps:
+    - name: Run the Action
+      uses: devops-infra/action-pull-request@v0.4.2
+      with:
+       github_token: ${{ secrets.GITHUB_TOKEN }}
+       source_branch: Development
+       target_branch: Staging
+       title: My pull request
+       template: .github/PULL_REQUEST_TEMPLATE.md
+       body: "**Automated pull request**"
+       label: enhancement
+       milestone: My milestone
+       draft: true
+       old_string: "<!-- Add your description here -->"
+       new_string: "** Automatic pull request**"
+       get_diff: true
+       
+  deploymentProduction:
+    needs: buildAndTest
+    if: startsWith(github.ref, 'refs/tags/p')
+    runs-on: ubuntu-latest
+    environment: 
+      name: Production
+      url: https://github.com
+    steps:
+    - name: Run the Action
+      uses: devops-infra/action-pull-request@v0.4.2
+      with:
+       github_token: ${{ secrets.GITHUB_TOKEN }}
+       source_branch: Development
+       target_branch: Production
+       title: My pull request
+       template: .github/PULL_REQUEST_TEMPLATE.md
+       body: "**Automated pull request**"
+       label: enhancement
+       milestone: My milestone
+       draft: true
+       old_string: "<!-- Add your description here -->"
+       new_string: "** Automatic pull request**"
+       get_diff: true
