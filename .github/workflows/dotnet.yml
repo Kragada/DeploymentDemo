@@ -59,7 +59,7 @@ jobs:
       with:
        github_token: ${{ secrets.GITHUB_TOKEN }}
        source_branch: Development
-       target_branch: Production
+       target_branch: main
        title: My pull request
        template: .github/PULL_REQUEST_TEMPLATE.md
        body: "**Automated pull request**"
