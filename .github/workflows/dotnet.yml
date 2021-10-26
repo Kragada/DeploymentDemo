@@ -42,22 +42,16 @@ jobs:
   deploymentProduction:
     needs: buildAndTest
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: Production
       url: https://github.com
     steps:
-    - name: Run the Action
-      uses: devops-infra/action-pull-request@v0.4.2
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
       with:
-       github_token: ${{ secrets.GITHUB_TOKEN }}
-       source_branch: Development
-       target_branch: main
-       title: My pull request
-       template: .github/PULL_REQUEST_TEMPLATE.md
-       body: "**Automated pull request**"
-       label: enhancement
-       milestone: My milestone
-       draft: true
-       old_string: "<!-- Add your description here -->"
-       new_string: "** Automatic pull request**"
-       get_diff: true
+        destination_branch: "main"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        pr_label: "feature, automated pr"
+        pr_title: "Prod"
