@@ -32,6 +32,7 @@ jobs:
     - name: Run the Action
       uses: devops-infra/action-pull-request@v0.4.2
       with:
+       github_token: ${{ secrets.GITHUB_TOKEN }}
        source_branch: Development
        target_branch: Staging
        title: My pull request
@@ -54,6 +55,7 @@ jobs:
     - name: Run the Action
       uses: devops-infra/action-pull-request@v0.4.2
       with:
+       github_token: ${{ secrets.GITHUB_TOKEN }}
        source_branch: Development
        target_branch: main
        title: My pull request
