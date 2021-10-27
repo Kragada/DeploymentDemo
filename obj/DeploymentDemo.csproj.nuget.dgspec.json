@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\DeploymentDemo.csproj": {}
+    "c:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\DeploymentDemo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\DeploymentDemo.csproj": {
+    "c:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\DeploymentDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\DeploymentDemo.csproj",
+        "projectUniqueName": "c:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\DeploymentDemo.csproj",
         "projectName": "DeploymentDemo",
-        "projectPath": "C:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\DeploymentDemo.csproj",
+        "projectPath": "c:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\DeploymentDemo.csproj",
         "packagesPath": "C:\\Users\\Rickard Hallberg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\obj\\",
+        "outputPath": "c:\\Users\\Rickard Hallberg\\Documents\\DeploymentDemo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
