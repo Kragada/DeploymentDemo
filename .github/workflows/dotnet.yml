@@ -24,7 +24,6 @@ jobs:
   
   deploymentStaging:
     needs: buildAndTest
-    if: startsWith(github.ref, 'refs/tags/s')
     runs-on: ubuntu-latest
     environment:
       name: Staging
@@ -41,8 +40,7 @@ jobs:
         pr_title: "Staging"
        
   deploymentProduction:
-    needs: buildAndTest
-    if: startsWith(github.ref, 'refs/tags/p')
+    needs: deploymentStaging
     runs-on: ubuntu-latest
     environment:
       name: Production
