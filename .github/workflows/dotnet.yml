@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ Development ]
+    branches: [ Pre-Development, Pre-Staging ]
 
 jobs:
   buildAndTest:
@@ -21,9 +21,28 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-  
+
+  deploymentDevelopment:
+    needs: buildAndTest
+    if: github.event.ref == 'refs/heads/Pre-Development'
+    runs-on: ubuntu-latest
+    environment:
+      name: Development
+      url: https://github.com
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "Development"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        pr_label: "feature, automated pr"
+        pr_title: "Development"
+ 
   deploymentStaging:
     needs: buildAndTest
+    if: github.event.ref == 'refs/heads/Pre-Staging'
     runs-on: ubuntu-latest
     environment:
       name: Staging
